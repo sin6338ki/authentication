@@ -2,6 +2,7 @@ package com.shop.auth.member.domain;
 
 import jakarta.persistence.Embeddable;
 import java.util.Objects;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 @Embeddable
@@ -30,6 +31,7 @@ public class Password {
         return String.valueOf(password);
     }
 
+    @Builder
     public Password(String password) {
         this.password = password;
     }

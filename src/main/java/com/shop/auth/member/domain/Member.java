@@ -7,17 +7,15 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
+import java.time.LocalDateTime;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "member")
-@Builder
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
 public class Member {
 
     @Id
@@ -31,7 +29,21 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private Authority authority;
 
-    @Embedded
     @Column
-    private RefreshToken refreshToken;
+    private LocalDateTime created;
+
+    @Builder
+    public Member(String email, Password password, Authority authority, LocalDateTime created) {
+        this.email = email;
+        this.password = password;
+        this.authority = authority;
+        this.created = created;
+    }
+
+    @Builder
+    public Member(String email, Password password) {
+        this.email = email;
+        this.password = password;
+    }
+
 }
